@@ -1,0 +1,23 @@
+{
+  "name": "marvelapi-dextra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josehpena/marvelAPI-Dextra.git"
+  },
+  "author": "Jose Pena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josehpena/marvelAPI-Dextra/issues"
+  },
+  "homepage": "https://github.com/josehpena/marvelAPI-Dextra#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.1"
+  }
+}

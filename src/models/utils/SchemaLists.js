@@ -6,16 +6,16 @@ const ComicList = new mongoose.Schema({
     items: { name: [String] }
 });
 
+const StorySummary = new mongoose.Schema({
+    name: [String],
+    type: [String]
+});
 const StoryList = new mongoose.Schema({
     avaible: { type: Number, required: false },
     returned: { type: Number, required: false },
     items: [StorySummary]
 });
 
-const StorySummary = new mongoose.Schema({
-    name: [String],
-    type: [String]
-});
 
 const EventList = new mongoose.Schema({
     avaible: { type: Number, required: false },

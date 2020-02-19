@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const SchemaList = require("./utils/SchemaLists");
 
 const CharSchema = new mongoose.Schema({
-    _id: { type: Schema.ObjectId, auto: true },
+    _id: { type: ObjectId, auto: true },
     name: { type: String, required: true },
     description: { type: String, required: false },
     modified: { type: Date, required: false },

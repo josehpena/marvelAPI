@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const ComicList = new mongoose.Schema({
     avaible: { type: Number, required: false },
     returned: { type: Number, required: false },
-    items: { name: [String] }
+    items: [{ name: String }]
 });
 
 const StorySummary = new mongoose.Schema({
@@ -16,17 +16,16 @@ const StoryList = new mongoose.Schema({
     items: [StorySummary]
 });
 
-
 const EventList = new mongoose.Schema({
     avaible: { type: Number, required: false },
     returned: { type: Number, required: false },
-    items: { name: [String] }
+    items: [{ name: [String] }]
 });
 
 const SeriesList = new mongoose.Schema({
     avaible: { type: Number, required: false },
     returned: { type: Number, required: false },
-    items: { name: [String] }
+    items: [{ name: [String] }]
 });
 
 exports.ComicList = ComicList;

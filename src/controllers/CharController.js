@@ -2,15 +2,24 @@ const Character = require("../models/Character");
 const parseStringAsArray = require("../utils/parseStringAsArray");
 
 module.exports = {
+    async listCharacters(req, res) {
+        try {
+            let char = await Character.findOne({});
+            if (!char) throw new Error("Nenhum personagem encontrado!");
+            else return res.json(char);
+        } catch (error) {
+            return res.status(409).json(error.message);
+        }
+    },
+
     async store(req, res) {
-        let response;
         try {
             const {
                 name,
                 description,
                 comicItemNames,
                 eventItemNames,
-                seriesItemNames,
+                seriesItemNames
                 //storyItemNames,
                 //storyItemTypes
             } = req.body;
@@ -21,33 +30,33 @@ module.exports = {
                 var eventItemNamesArray = parseStringAsArray(eventItemNames);
             if (seriesItemNames)
                 var seriesItemNameArray = parseStringAsArray(seriesItemNames);
-            if (storyItemNames)
-                var storyItemNamesArray = parseStringAsArray(storyItemNames);
-            if (storyItemTypes)
-                var storyItemTypesArray = parseStringAsArray(storyItemTypes);
-
+            /*  if (storyItemNames)
+                                                                                                                                                                                                                                                                                                                                                                                              var storyItemNamesArray = parseStringAsArray(storyItemNames);
+                                                                                                                                                                                                                                                                                                                                                                                          if (storyItemTypes)
+                                                                                                                                                                                                                                                                                                                                                                                              var storyItemTypesArray = parseStringAsArray(storyItemTypes);
+                                                                                                                                                                                                                                                                                                                                                                                          */
             let char = await Character.findOne({ name });
             let modified = new Date();
-
+            console.log(comicItemNamesArray);
             //let dump = comicItemNamesArray.length
             let ComicList = {
                 //avaible = dump,
-                items: { names: [comicItemNamesArray] }
-            }
-            
+                items: [{ name: comicItemNamesArray[1] }]
+            };
+
+            console.log(ComicList);
+
             let EventList = {
                 //avaible = dump,
-                items: { names: [eventItemNamesArray] }
-            }
+                items: [{ name: eventItemNamesArray[1] }]
+            };
 
-            
             let SerieList = {
                 //avaible = dump,
-                items: { names: [seriesItemNameArray] }
-            }
+                items: [{ name: seriesItemNameArray[1] }]
+            };
 
             if (!char) {
-
                 char = await Character.create({
                     name,
                     description,
@@ -55,18 +64,17 @@ module.exports = {
                     comics: ComicList,
                     events: EventList,
                     series: SerieList
-                })
-                if(char)
-                    response = {"code":200,
-                    "status":"OK",
-                    char
-                }
-                else throw new Error("Erro na criação de personagem!")
-            } else throw new Error("Personagem já existe!");
+                });
 
+                await Character.findOne({ name }).then(function(record) {
+                    comicItemNamesArray.forEach(element => {
+                        record.comics.ComicList.items.push({ name: element });
+                    });
+                });
+            } else throw new Error("Personagem já existe!");
+            return res.json(char);
         } catch (error) {
-            console.log(error.name + ":" + error.message);
+            return res.json({ code: 409 } + error.message);
         }
-        return res.json(response);
     }
 };

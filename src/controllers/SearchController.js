@@ -2,61 +2,55 @@ const Character = require("../models/Character");
 
 module.exports = {
     async findCharacter(req, res) {
-        try {
-            const ID = req.params.characterID;
-            let char = await Character.findById(ID, function(err) {
-                if (err) {
-                    throw new Error("Character not found.");
-                }
+        const ID = req.params.characterID;
+        await Character.findById(ID)
+            .then(function(char) {
+                return res.json(char);
+            })
+            .catch(function(err) {
+                return res.status(404).json("Character not found.");
             });
-            return res.json(char);
-        } catch (error) {
-            return res.status(404).json(error.message);
-        }
     },
 
     async findComics(req, res) {
-        try {
-            const ID = req.params.characterID;
+        const ID = req.params.characterID;
 
-            let char = await Character.findById(ID);
-
-            return res.json(char.comics);
-        } catch (error) {
-            return res.json(error.message);
-        }
+        await Character.findById(ID)
+            .then(function(char) {
+                return res.json(char.comics);
+            })
+            .catch(function() {
+                return res.status(404).json("Character not found.");
+            });
     },
     async findSeries(req, res) {
-        try {
-            const ID = req.params.characterID;
-
-            let char = await Character.findById(ID);
-
-            return res.json(char.series);
-        } catch (error) {
-            return res.json(error.message);
-        }
+        const ID = req.params.characterID;
+        await Character.findById(ID)
+            .then(function(char) {
+                return res.json(char.series);
+            })
+            .catch(function() {
+                return res.status(404).json("Character not found.");
+            });
     },
     async findEvents(req, res) {
-        try {
-            const ID = req.params.characterID;
-
-            let char = await Character.findById(ID);
-
-            return res.json(char.events);
-        } catch (error) {
-            return res.json(error.message);
-        }
+        const ID = req.params.characterID;
+        await Character.findById(ID)
+            .then(function(char) {
+                return res.json(char.events);
+            })
+            .catch(function() {
+                return res.status(404).json("Character not found.");
+            });
     },
     async findStories(req, res) {
-        try {
-            const ID = req.params.characterID;
-
-            let char = await Character.findById(ID);
-
-            return res.json(char.stories);
-        } catch (error) {
-            return res.json(error.message);
-        }
+        const ID = req.params.characterID;
+        await Character.findById(ID)
+            .then(function(char) {
+                return res.json(char.stories);
+            })
+            .catch(function() {
+                return res.status(404).json("Character not found.");
+            });
     }
 };

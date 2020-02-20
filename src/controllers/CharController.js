@@ -31,28 +31,23 @@ module.exports = {
             if (seriesItemNames)
                 var seriesItemNameArray = parseStringAsArray(seriesItemNames);
             /*  if (storyItemNames)
-                                                                                                                                                                                                                                                                                                                                                                                              var storyItemNamesArray = parseStringAsArray(storyItemNames);
-                                                                                                                                                                                                                                                                                                                                                                                          if (storyItemTypes)
-                                                                                                                                                                                                                                                                                                                                                                                              var storyItemTypesArray = parseStringAsArray(storyItemTypes);
-                                                                                                                                                                                                                                                                                                                                                                                          */
+                                                                                                                                                                                                                                                                                                                                                                                                                var storyItemNamesArray = parseStringAsArray(storyItemNames);
+                                                                                                                                                                                                                                                                                                                                                                                                            if (storyItemTypes)
+                                                                                                                                                                                                                                                                                                                                                                                                                var storyItemTypesArray = parseStringAsArray(storyItemTypes);
+                                                                                                                                                                                                                                                                                                                                                                                                            */
             let char = await Character.findOne({ name });
             let modified = new Date();
             console.log(comicItemNamesArray);
-            //let dump = comicItemNamesArray.length
+
             let ComicList = {
-                //avaible = dump,
                 items: [{ name: comicItemNamesArray[1] }]
             };
 
-            console.log(ComicList);
-
             let EventList = {
-                //avaible = dump,
                 items: [{ name: eventItemNamesArray[1] }]
             };
 
             let SerieList = {
-                //avaible = dump,
                 items: [{ name: seriesItemNameArray[1] }]
             };
 

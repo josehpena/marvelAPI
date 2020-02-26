@@ -31,10 +31,10 @@ module.exports = {
             if (seriesItemNames)
                 var seriesItemNameArray = parseStringAsArray(seriesItemNames);
             /*  if (storyItemNames)
-                                                                                                                                                                                                                                                                                                                                                                                                                var storyItemNamesArray = parseStringAsArray(storyItemNames);
-                                                                                                                                                                                                                                                                                                                                                                                                            if (storyItemTypes)
-                                                                                                                                                                                                                                                                                                                                                                                                                var storyItemTypesArray = parseStringAsArray(storyItemTypes);
-                                                                                                                                                                                                                                                                                                                                                                                                            */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          var storyItemNamesArray = parseStringAsArray(storyItemNames);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      if (storyItemTypes)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          var storyItemTypesArray = parseStringAsArray(storyItemTypes);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
             let char = await Character.findOne({ name });
             let modified = new Date();
             console.log(comicItemNamesArray);
@@ -59,12 +59,6 @@ module.exports = {
                     comics: ComicList,
                     events: EventList,
                     series: SerieList
-                });
-
-                await Character.findOne({ name }).then(function(record) {
-                    comicItemNamesArray.forEach(element => {
-                        record.comics.ComicList.items.push({ name: element });
-                    });
                 });
             } else throw new Error("Personagem já existe!");
             return res.json(char);

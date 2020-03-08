@@ -2,8 +2,9 @@
 ## To execute this project, you will need:
 <ol>
   <li>Node.Js</li>
-  <li>Insomnia or in your own browser</li>
+  <li>Insomnia or your own browser</li>
 <ol>
+  
 ## Clone the project
   
 - git clone https://github.com/josehpena/marvelAPI.git
